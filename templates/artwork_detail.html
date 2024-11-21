@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ artwork.titre }}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo" onclick=window.location.href="{% url 'appart:home' %}">
+                {% load static %}
+                <img src="{% static 'images/Logo.png' %}" alt="ArtHub">
+            </div>
+            <ul>
+                
+                {% if user.is_authenticated %}
+                <p>Bonjour, {{ user.username }} ! </p> | <a href="{% url 'appart:profile_view' username=request.user.username %}">Mon Profil</a> | <a href="{% url 'appart:profile_edit' %}">Modifier mon profil </a> | <a href="{% url 'appart:logout' %}">Deconnexion </a>  
+                
+                   
+                {% else %}
+                    <li><a href="{% url 'appart:login' %}">Connexion</a></li>
+                    <li><a href="{% url 'appart:register' %}">Inscription</a></li>    
+                {% endif %}
+
+            </ul>
+        </nav>
+    </header>
+    <div class="artwork-detail">
+       <h1>{{ artwork.titre }}</h1>
+       <img src="{{ artwork.image.url }}" alt="{{ artwork.titre }}" class="artwork-image">
+       <div class="artwork-info">
+           <p><strong>Description :</strong> {{ artwork.description }}</p>
+           
+           <p>
+             {% if artwork.is_for_sale %}
+                <strong></strong> À vendre
+             {% endif %}
+           </P>
+           <p><strong></strong> {{ artwork.prix }} Fbu</p>
+           <p>
+             {% if artwork.is_for_rent %} 
+                <strong></strong> À louer
+             {% endif %}
+           </p>
+       </div>  
+       
+       <div class="actions">
+           <a href="{% url 'appart:place_order' artwork.id %}" class="btn">Acheter</a>
+           <a href="{% url 'appart:request_rental' artwork.id %}" class="btn">Louer</a>
+       </div>   
+           
+       <a href="{% url 'appart:all_artworks' %}">Retour à la liste</a>
+
+    </div> 
+    <section class="container">
+        <section class="description">
+            <div class="description-content">
+                <h2>Contact</h2>
+                <p>Téléphone: +257 68109200 / +257 65164516 </p>
+                <p>Email: arthubburundi@gmail.com</p>
+                
+            </div>
+        </section>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <p>copyright &copy; 2024</p>
+        </div>
+    </footer>  
+</body>
+</html>

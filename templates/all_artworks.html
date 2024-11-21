@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des œuvres</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo" onclick=window.location.href="{% url 'appart:home' %}">
+                {% load static %}
+                <img src="{% static 'images/Logo.png' %}" alt="ArtHub">
+            </div>
+            <ul>
+                
+                {% if user.is_authenticated %}
+                <p>Bonjour, {{ user.username }} ! </p> | <a href="{% url 'appart:profile_view' username=request.user.username %}">Mon Profil</a> | <a href="{% url 'appart:profile_edit' %}">Modifier mon profil </a> | <a href="{% url 'appart:logout' %}">Deconnexion </a>  
+                
+                   
+                {% else %}
+                    <li><a href="{% url 'appart:login' %}">Connexion</a></li>
+                    <li><a href="{% url 'appart:register' %}">Inscription</a></li>    
+                {% endif %}
+
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="hero">
+        <ul>
+            {% for artwork in artworks %}
+                <li><img src="{{ artwork.image.url }}" alt="{{ artwork.titre }}">
+                    <h2><a href="{% url 'appart:artwork_detail' artwork.id %}">{{ artwork.titre }}</a></h2>
+                    <p> {{ artwork.prix }} Fbu</p>
+                    <p>{% if artwork.is_for_sale %}À vendre{% endif %}{% if artwork.is_for_rent %} / À louer{% endif %}</p>
+                </li>
+            {% endfor %}
+        </ul>
+     
+    </section>
+    <section class="container">
+        <section class="description">
+            <div class="description-content">
+                <h2>Contact</h2>
+                <p>Téléphone: +257 68109200 / +257 65164516 </p>
+                <p>Email: arthubburundi@gmail.com</p>
+                
+            </div>
+        </section>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <p>copyright &copy; 2024</p>
+        </div>
+    </footer>
+</body>
+</html>

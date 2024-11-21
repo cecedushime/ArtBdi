@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmation de l'Achat</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo" onclick=window.location.href="{% url 'appart:home' %}">
+                <img src="{% static 'images/Logo.png' %}" alt="ArtHub">
+            </div>
+            <ul>
+                
+                {% if user.is_authenticated %}
+                <p>Bonjour, {{ user.username }} !</p>
+                <a href="{% url 'appart:profile_view' %}">Voir mon profil</a>
+                <a href="{% url 'appart:profile_edit' %}">Modifier mon profil</a>
+                {% else %}
+                    <li><a href="{% url 'appart:login' %}">Connexion</a></li>
+                    <li><a href="{% url 'appart:register' %}">Inscription</a></li>    
+                {% endif %}
+
+            </ul>
+        </nav>
+    </header>
+    <h1>Merci pour votre achat !</h1>
+    <p>Vous avez acheté l'œuvre : <strong>{{ artwork.titre }}</strong></p>
+    <a href="{% url 'appart:all_artworks' %}">Retour à la liste</a>
+    <section class="container">
+        <section class="description">
+            <div class="description-content">
+                <h2>Contact</h2>
+                <p>Téléphone: +257 68109200 / +257 65164516 </p>
+                <p>Email: arthubburundi@gmail.com</p>
+                
+            </div>
+        </section>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <p>copyright &copy; 2024</p>
+        </div>
+    </footer> 
+</body>
+</html>

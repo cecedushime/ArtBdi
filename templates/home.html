@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtHub Burundi</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="{% static 'images/Logo.png' %}" alt="ArtHub">
+            </div>
+            <ul>
+                
+                {% if user.is_authenticated %}
+                <p>Bonjour, {{ user.username }} !</p>
+                <a href="{% url 'appart:profile_view' %}">Voir mon profil</a>
+                <a href="{% url 'appart:profile_edit' %}">Modifier mon profil</a>
+                {% else %}
+                    <li><a href="{% url 'appart:login' %}">Connexion</a></li>
+                    <li><a href="{% url 'appart:register' %}">Inscription</a></li>    
+                {% endif %}
+
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Bienvenue sur ArtHub Burundi</h1>
+            <p>Acheter et Louer les oeuvres d'art Burundais</p>
+            <a href="/reserver" class="button">Voir les Oeuvres d'art</a>
+        </div>
+    </section>
+
+    
+        {% endfor %}
+    </section>
+    <section class="container">
+        <section class="description">
+            <div class="description-content">
+                <h2>Contact</h2>
+                <p>Téléphone: +257 68109200 / +257 65164516 </p>
+                <p>Email: arthubburundi@gmail.com</p>
+                
+            </div>
+        </section>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <p>copyright &copy; 2024</p>
+        </div>
+    </footer> 
+</body>
+</html>

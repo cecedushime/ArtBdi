@@ -1,0 +1,18 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h2>Œuvres d'art récentes</h2>
+  <div class="Oeuvre_art">
+    {% for Oeuvre_art in Oeuvre_art %}
+      <div class="artwork">
+        <h3>{{ Oeuvre_art.titre }}</h3>
+        <p>{{ Oeuvre_art.description }}</p>
+        <p>Prix : {{ Oeuvre_art.prix }}</p>
+        <p>Artiste : {{ Oeuvre_art.artiste.nom }}</p>
+        <img src="{{ Oeuvre_art.image.url }}" alt="{{ Oeuvre_art.titre }}">
+      </div>
+    {% empty %}
+      <p>Aucune œuvre d'art n'a été trouvée.</p>
+    {% endfor %}
+  </div>
+{% endblock %}

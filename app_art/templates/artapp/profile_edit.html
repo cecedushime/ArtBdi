@@ -1,0 +1,7 @@
+<h1>Modifier le Profil</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Sauvegarder les modifications</button>
+</form>
+<a href="{% url 'appart:profile_view' %}">Annuler</a>

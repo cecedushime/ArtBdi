@@ -1,0 +1,30 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  .artworks {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .artwork {
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    padding: 10px;
+    width: calc(33% - 20px);
+  }
+  
+  .artwork h3 {
+    margin: 0 0 10px;
+  }
+  
+  .artwork p {
+    margin: 0 0 10px;
+  }
+  
+  .artwork img {
+    max-width: 100%;
+    height: auto;
+  }
+  

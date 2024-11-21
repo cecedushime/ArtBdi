@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des œuvres</title>
+</head>
+<body>
+    <h1>Liste des œuvres d'art</h1>
+    <ul>
+        {% for artwork in artworks %}
+            <li>
+                <p>Prix : {{ Oeuvre_art.prix }} Fbu</p>
+                <p>{% if Oeuvre_art.is_for_sale %}À vendre{% endif %}{% if Oeuvre_art.is_for_rent %} / À louer{% endif %}</p>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
